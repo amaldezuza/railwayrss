@@ -54,7 +54,7 @@ def create_feed_checker(feed_url):
         if len(FEED.entries) == 0:
             print(f"RSS Feed at {feed_url} returned no entries")
             try:
-                app.send_message(log_channel, f"RSS Feed at {feed_url} returned no entries")
+                app.send_message(mirr_chat, f"RSS Feed at {feed_url} returned no entries")
             except FloodWait as e:
                 print(f"FloodWait: {e.x} seconds")
                 sleep(e.x)
@@ -69,7 +69,7 @@ def create_feed_checker(feed_url):
         if last_id_from_db == "*":
             message = f"**{first_entry.title}**\n```{first_entry.link}```"
             try:
-                if "TombDoc" in first_entry.link or "Galaxy" in first_entry.link:
+                if "TombDoc" in first_entry.link or "Galaxy" in first_entry.link or "RARBG" in first_entry.link:
                     app.send_message(log_channel, message)
                 else:
                     print(f"{first_entry.link}: >>skipped<<")
@@ -96,7 +96,7 @@ def create_feed_checker(feed_url):
             # ↓ Edit this message as your needs.
             message = f"**{entry.title}**\n```{entry.link}```"
             try:
-                if "1080p" in entry.link or "2160p" in entry.link or "psa" in entry.link:
+                if "1080p" in entry.link or "720p" in entry.link or "ION10" in entry.link or "VXT" in entry.link:
                     app.send_message(log_channel, message)
                 else:
                     print(f"{entry.link}: >>skipped<<")
